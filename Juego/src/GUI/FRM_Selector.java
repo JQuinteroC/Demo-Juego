@@ -1,8 +1,8 @@
 package GUI;
 
 import Logica.Builder;
+import Logica.ConstructorDuende;
 import Logica.ConstructorMago;
-import Logica.Duende;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -160,7 +160,7 @@ public class FRM_Selector extends javax.swing.JFrame {
 
     private void lblDuendeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDuendeMouseClicked
         Builder build = new Builder();
-        build.setConstructor(new Duende());
+        build.setConstructor(new ConstructorDuende());
         build.CrearPersonaje();
         FRM_Visor ventana = new FRM_Visor(build.getPersonaje());
         ventana.setVisible(true);

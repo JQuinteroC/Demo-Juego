@@ -20,9 +20,6 @@ public class ConstructorMago extends ConstruirPersonaje {
     
     @Override
     public void CrearAnimaciones() {
-        
-        
-
         for (int i = 0; i < 5; i++) {
             try {
                 personaje.caminar[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Wizard\\Walk\\2_WALK_" + i + ".png")));
