@@ -15,7 +15,7 @@ public class Personaje extends JComponent implements Cloneable {
     protected ImageIcon[] saltar;
     protected ImageIcon[] morir;
     protected ImageIcon[] atacar;
-    int x = 0;
+    int x = 0; // Variable de identificación de animación
     int numero = 0;
     int ancho = 0;
     int alto = 0;
@@ -25,6 +25,23 @@ public class Personaje extends JComponent implements Cloneable {
     static JPanel panel = null;
     public Thread hilo;
 
+    // CONSTRUCTOR
+    public Personaje() {
+        // Se limpian todas las varibales para el cambio de personaje
+        hilo = null;
+        caminar = null;
+        saltar = null;
+        morir = null;
+        atacar = null;
+        x = 0;
+        numero = 0;
+        ancho = 0;
+        alto = 0;
+        relacion = false;
+        panel = null;
+    }
+
+    // SET AND GET
     public boolean isRelacion() {
         return relacion;
     }
@@ -43,21 +60,6 @@ public class Personaje extends JComponent implements Cloneable {
 
     public void setAlto(int alto) {
         this.alto = alto;
-    }
-
-    public Personaje() {
-        // Se limpian todas las varibales para el cambio de personaje
-        hilo = null;
-        caminar = null;
-        saltar = null;
-        morir = null;
-        atacar = null;
-        x = 0;
-        numero = 0;
-        ancho = 0;
-        alto = 0;
-        relacion = false;
-        panel = null;
     }
 
     public void setHilo(int mover, int saltar, int morir, int atacar, int sleep) {
@@ -101,22 +103,7 @@ public class Personaje extends JComponent implements Cloneable {
             }
         };
     }
-
-    @Override
-    public Personaje clone() {
-        Personaje PersonajeClonado = null;
-        try {
-            PersonajeClonado = (Personaje) super.clone();
-            if (PersonajeClonado.isRelacion()) {
-                PersonajeClonado.setHilo(5, 5, 5, 5, 130);
-            } else {
-                PersonajeClonado.setHilo(24, 18, 15, 12, 50);
-            }
-        } catch (CloneNotSupportedException e) {
-        } // catch	
-        return PersonajeClonado;
-    } // method clone
-
+    
     public void setPanel(JPanel panel) {
         Personaje.panel = panel;
         setBounds(0, 0, panel.getWidth(), panel.getHeight());
@@ -154,6 +141,23 @@ public class Personaje extends JComponent implements Cloneable {
         this.atacar = atacar;
     }
 
+    // CLONE
+    @Override
+    public Personaje clone() {
+        Personaje PersonajeClonado = null;
+        try {
+            PersonajeClonado = (Personaje) super.clone();
+            if (PersonajeClonado.isRelacion()) {
+                PersonajeClonado.setHilo(5, 5, 5, 5, 130);
+            } else {
+                PersonajeClonado.setHilo(24, 18, 15, 12, 50);
+            }
+        } catch (CloneNotSupportedException e) {
+        } 
+        return PersonajeClonado;
+    }
+
+    // PINTAR EN PANEL
     @Override
     public void paint(Graphics g) {
         try {
@@ -185,11 +189,12 @@ public class Personaje extends JComponent implements Cloneable {
                 default:
                     break;
             }
-        } catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
     }
 
+    // ANIMACIONES
     public void mover() {
         x = 0;
         numero = 0;
